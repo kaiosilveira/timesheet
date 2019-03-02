@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  margin: 1em .5em;
+  border: 1px solid #eee;
+  box-shadow: 4px 16px 16px #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.card .highlight {
+  font-size: 42px;
+}
+
+.card.green {
+  background-color: lightgreen;
+  color: white;
+  font-size: 16px;
+}
+
+.card.text-green {
+  color: lightgreen;
+}
