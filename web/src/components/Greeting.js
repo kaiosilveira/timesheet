@@ -5,6 +5,4 @@ const Greeting = ({ name }) => (
     <h1>Olá, {name}</h1>
 )
 
-export default connect(state => ({
-    name: state.user.name
-}))(Greeting)
+export default connect(({ user: { name } }) => ({ name }))(Greeting)

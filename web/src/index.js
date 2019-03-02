@@ -1,6 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Root from './Root'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import store from './store/store'
+import fetchUser from './store/actions/fetchUser'
+import fetchTimesheet from './store/actions/fetchTimesheet'
+
+store
+.dispatch(fetchUser())
+.then(() => store.dispatch(fetchTimesheet(store.getState().user)))
+
+ReactDOM.render(<Root store={store}/>, document.getElementById('root'));

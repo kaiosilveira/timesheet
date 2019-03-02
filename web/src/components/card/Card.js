@@ -1,4 +1,5 @@
 import React from 'react'
+import './Card.css'
 
 const Card = ({ info }) => (
     <div className={`card ${info.className || ''}`}>

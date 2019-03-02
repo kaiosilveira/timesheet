@@ -4,28 +4,25 @@ body {
   font-family: sans-serif;
 }
 
-.card {
+.fab {
+  background-color:lightgreen;
+  color: white;
+  padding: 1em;
+  margin: 1em;
+  position: absolute;
+  right: 1%;
+  bottom: 1%;
+  border-radius: 100%;
+  width: 75px;
+  height: 75px;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em;
-  margin: 1em .5em;
-  border: 1px solid #eee;
-  box-shadow: 4px 16px 16px #eee;
-  display: flex;
-  flex-direction: column;
+  vertical-align: middle;
+  box-shadow: 2px 4px 4px #ddd;
 }
 
-.card .highlight {
-  font-size: 42px;
-}
-
-.card.green {
-  background-color: lightgreen;
-  color: white;
-  font-size: 16px;
-}
-
-.card.text-green {
-  color: lightgreen;
+.fab .text {
+  font-size: 32px;
 }

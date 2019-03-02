@@ -1,0 +1,21 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    border: 1px solid #eee;
+    padding: 1em;
+    margin: 1rem;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    padding: 1em;
+    margin: 1rem;
+    background-color: lightgreen;
+    border: 0;
+    color: #fff;
+    box-shadow: 2px 4px 4px #ddd;
+    font-size: 16px;
+}
