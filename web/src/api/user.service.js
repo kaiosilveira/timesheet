@@ -1,7 +1,7 @@
 const user = {
     name: 'Kaio',
     username: 'kaio',
-    hourValue: 25
+    hourValue: 55
 }
 
 class UserService {

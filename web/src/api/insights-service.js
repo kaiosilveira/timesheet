@@ -1,23 +1,6 @@
-import isWeekDay from '../utils/isWeekDay';
+import getTotalWeekDaysOfCurrentMonth from '../utils/getTotalWeekDaysOfCurrentMonth';
 
 class InsightsService {
-
-    getTotalWeekDaysOfCurrentMonth = () => {
-
-        const ref = new Date();
-        const nextMonth = new Date(ref.getFullYear(), ref.getMonth() + 1, 0);
-        const totalDaysInCurrentMonth = nextMonth.getDate();
-
-        let weekDays = 0;
-        for (let i = ref.getDate(); i < totalDaysInCurrentMonth; i++) {
-            const step = new Date(ref.getFullYear(), ref.getMonth(), i);
-            if (isWeekDay(step.getDay())) {
-                weekDays++;
-            }
-        }
-
-        return weekDays;
-    }
 
     buildCurrentEarningsCard = (hourValue, timesheet) => {
         return {
@@ -38,8 +21,8 @@ class InsightsService {
 
     buildForecastCard = (hourValue, timesheet) => {
 
-        const totalDaysOfCurrentMonth = this.getTotalWeekDaysOfCurrentMonth()
-        const averageWorkHours = this.getAverageWorkHoursPerDay(timesheet)
+        const totalDaysOfCurrentMonth = getTotalWeekDaysOfCurrentMonth()
+        const averageWorkHours = this.getAverageWorkHoursPerDay(timesheet) || 8
 
         return {
             id: Math.floor(Math.random() * 1000),
