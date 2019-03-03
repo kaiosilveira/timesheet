@@ -1,0 +1,22 @@
+.fab {
+    background-color:lightgreen;
+    color: white;
+    padding: 1em;
+    margin: 1em;
+    position: absolute;
+    right: 1%;
+    bottom: 1%;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    box-shadow: 2px 4px 4px #ddd;
+  }
+  
+.fab .text {
+    font-size: 32px;
+}
