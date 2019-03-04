@@ -1,4 +1,5 @@
 import API_URL from '../API_URL'
+import 'cross-fetch/polyfill'
 
 class TimesheetService {
     
@@ -19,9 +20,10 @@ class TimesheetService {
             'Content-Type': 'application/json',
             'mode': 'cors'
         })
-        .then(res => {
-            return res.json()
-        }, err => console.log(err))
+        .then(
+            res => res.json(),
+            err => console.log(err)
+        )
     }
 }
 

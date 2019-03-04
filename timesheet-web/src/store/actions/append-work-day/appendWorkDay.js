@@ -1,5 +1,5 @@
-import { APPEND_WORK_DAY } from './ACTION_TYPES'
+import { APPEND_WORK_JOURNEY } from '../ACTION_TYPES'
 
-const appendTimesheet = workDay => ({ type: APPEND_WORK_DAY, workDay })
+const appendWorkDay = workJourney => ({ type: APPEND_WORK_JOURNEY, workJourney })
 
-export default appendTimesheet
+export default appendWorkDay

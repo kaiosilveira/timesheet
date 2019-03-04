@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import Root from './Root'
 
 import store from './store/store'
-import fetchUser from './store/actions/fetchUser'
-import fetchTimesheet from './store/actions/fetchTimesheet'
-import fetchCurrentPeriod from './store/actions/fetchCurrentPeriod'
+import fetchUser from './store/actions/fetch-user/fetchUser'
+import fetchTimesheet from './store/actions/fetch-timesheet/fetchTimesheet'
+import fetchCurrentPeriod from './store/actions/fetch-current-period/fetchCurrentPeriod'
 
 import './index.css'
 

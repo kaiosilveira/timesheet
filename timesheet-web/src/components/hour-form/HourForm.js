@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import './HourForm.css'
-import registerWorkDay from '../../store/actions/registerWorkDay'
-import WORK_HOURS, { PAUSE_HOURS } from '../../constraints/WORK_HOURS';
+import registerWorkJourney from '../../store/actions/register-work-journey/registerWorkJourney'
+import WORK_HOURS, { PAUSE_HOURS } from '../../constraints/WORK_HOURS'
 
 class HourForm extends React.Component {
     render() {
@@ -48,7 +48,7 @@ const mapStateToProps = ({ period }) => ({ period })
 
 const mapDispatchToProps = dispatch => ({
     onSubmit: (from, to, pause) => {
-        return dispatch(registerWorkDay({ date: new Date(), from, to, pause }))
+        return dispatch(registerWorkJourney({ date: new Date(), from, to, pause }))
     }
 })
 
