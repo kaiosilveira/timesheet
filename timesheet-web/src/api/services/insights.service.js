@@ -1,4 +1,4 @@
-import getTotalWeekDaysOfCurrentMonth from '../../utils/getTotalWeekDaysOfCurrentMonth'
+import getTotalWeekDaysOfMonth from '../../utils/get-total-weekdays-of-month/getTotalWeekDaysOfMonth'
 
 class InsightsService {
 
@@ -21,7 +21,7 @@ class InsightsService {
 
     buildForecastCard = (hourValue, timesheet) => {
 
-        const totalDaysOfCurrentMonth = getTotalWeekDaysOfCurrentMonth()
+        const totalDaysOfCurrentMonth = getTotalWeekDaysOfMonth(new Date())
         const averageWorkHours = this.getAverageWorkHoursPerDay(timesheet) || 8
 
         return {

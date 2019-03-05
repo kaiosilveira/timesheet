@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Card from '../card/Card'
-import createInsights from '../../store/selectors';
+import Card from '../_shared/card/Card'
+import createInsights from '../../store/selectors'
 
 const Insights = ({ insights }) => (
     <div className="insights-wrapper">

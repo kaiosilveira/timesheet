@@ -7,7 +7,7 @@ const express = require('express'),
 app.set('privateKey', 'UnicornLauncher');
 
 app.use(cors());
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.text());

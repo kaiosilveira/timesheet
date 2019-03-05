@@ -1,4 +1,4 @@
-import decimalToHour from '../utils/decimalToHour'
+import decimalToHour from '../utils/decimal-to-hour/decimalToHour'
 
 class WorkHour {
     constructor(value, label) {

@@ -6,9 +6,9 @@ import { APPEND_WORK_JOURNEY } from '../ACTION_TYPES'
 import registerWorkJourney from './registerWorkJourney'
 import API_URL from '../../../api/API_URL'
 
-const mockStore = configureMockStore([thunkMiddleware])
-
 describe('registerWorkJourney', () => {
+
+    const mockStore = configureMockStore([thunkMiddleware])
 
     afterEach(() => fetchMock.restore())
 

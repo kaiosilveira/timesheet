@@ -7,7 +7,7 @@ const initialState = {
     timesheet: []
 }
 
-const userReducer = (state = initialState, { type, user }) => {
+const user = (state = initialState, { type, user }) => {
     switch (type) {
         case RECEIVE_USER:
             return  { ...user }
@@ -16,4 +16,4 @@ const userReducer = (state = initialState, { type, user }) => {
     }
 }
 
-export default userReducer
+export default user

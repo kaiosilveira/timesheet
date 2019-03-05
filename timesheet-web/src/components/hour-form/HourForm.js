@@ -1,50 +1,59 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 
-import './HourForm.css'
 import registerWorkJourney from '../../store/actions/register-work-journey/registerWorkJourney'
 import WORK_HOURS, { PAUSE_HOURS } from '../../constraints/WORK_HOURS'
 
-class HourForm extends React.Component {
-    render() {
-        const { onSubmit, history } = this.props;
-        let from, to, pause;
+import './HourForm.css'
 
-        return (
-            <section>
-                <h2>Registrar horas</h2>
-                <form className="form" onSubmit={e => {
-                    e.preventDefault()
-                    onSubmit(parseInt(from.value), parseInt(to.value), parseInt(pause.value))
-                    history.push('/')
-                }}>
-                    <div className="field-group">
-                        <label className="label">Das:</label>
-                        <select className="select-box" ref={ node => from = node }>
-                            {WORK_HOURS.map(wh => (<option key={wh.value} value={wh.value}>{wh.label}</option>))}
-                        </select>
-                    </div>
-                    <div className="field-group">
-                        <label className="label">Ás:</label>
-                        <select className="select-box" ref={ node => to = node }>
-                            {WORK_HOURS.map(wh => (<option key={wh.value} value={wh.value}>{wh.label}</option>))}
-                        </select>
-                    </div>
-                    <div className="field-group">
-                        <label className="label">Pausa:</label>
-                        <select className="select-box" ref={ node => pause = node }>
-                            {PAUSE_HOURS.map(ph => (<option key={ph.value} value={ph.value}>{ph.label}</option>))}
-                        </select>
-                    </div>
+const HourForm = props => {
+
+    const { onSubmit, history } = props;
+    let from, to, pause;
+
+    return (
+        <section>
+            <h2 className="subtitle">Registrar horas</h2>
+            <form className="form" onSubmit={e => {
+                e.preventDefault()
+                onSubmit(parseInt(from.value), parseInt(to.value), parseInt(pause.value))
+                .then(() => history.push('/'))
+            }}>
+                <div className="field-group">
+                    <label className="label">Das:</label>
+                    <select className="select-box" ref={ node => from = node }>
+                        {WORK_HOURS.map(wh => (<option key={wh.value} value={wh.value}>{wh.label}</option>))}
+                    </select>
+                </div>
+
+                <div className="field-group">
+                    <label className="label">Ás:</label>
+                    <select className="select-box" ref={ node => to = node }>
+                        {WORK_HOURS.map(wh => (<option key={wh.value} value={wh.value}>{wh.label}</option>))}
+                    </select>
+                </div>
+                <div className="field-group">
+                    <label className="label">Pausa:</label>
+                    <select className="select-box" ref={ node => pause = node }>
+                        {PAUSE_HOURS.map(ph => (<option key={ph.value} value={ph.value}>{ph.label}</option>))}
+                    </select>
+                </div>
+                <div className="actions">
+                    <button className="btn-outlined" onClick={ () => history.push('/') }>Voltar</button>
                     <button type="submit" className="submit-btn">Salvar</button>
-                </form>
-            </section>
-        )
-    }
+                </div>
+            </form>
+        </section>
+    )
 }
 
-const mapStateToProps = ({ period }) => ({ period })
+HourForm.propTypes = {
+    history: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state, { history }) => ({ history })
 
 const mapDispatchToProps = dispatch => ({
     onSubmit: (from, to, pause) => {

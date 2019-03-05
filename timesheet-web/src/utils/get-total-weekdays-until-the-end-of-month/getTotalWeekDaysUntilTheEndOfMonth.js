@@ -1,7 +1,7 @@
-import isWeekDay from './isWeekDay'
-import isHoliday from './isHoliday'
+import isWeekDay from '../is-weekday/isWeekDay'
+import isHoliday from '../is-holiday/isHoliday'
 
-const getTotalWeekDaysOfCurrentMonth = () => {
+const getTotalWeekDaysUntilTheEndOfMonth = () => {
 
     const ref = new Date()
     const nextMonth = new Date(ref.getFullYear(), ref.getMonth() + 1, 0)
@@ -18,4 +18,4 @@ const getTotalWeekDaysOfCurrentMonth = () => {
     return weekDays
 }
 
-export default getTotalWeekDaysOfCurrentMonth
+export default getTotalWeekDaysUntilTheEndOfMonth

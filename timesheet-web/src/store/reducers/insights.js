@@ -1,6 +1,6 @@
 import { RECEIVE_INSIGHTS } from '../actions/ACTION_TYPES'
 
-const insightsReducer = (state = [], { type, insights }) => {
+const insights = (state = [], { type, insights }) => {
     switch(type) {
         case RECEIVE_INSIGHTS:
             return [...insights]
@@ -9,4 +9,4 @@ const insightsReducer = (state = [], { type, insights }) => {
     }
 }
 
-export default insightsReducer
+export default insights

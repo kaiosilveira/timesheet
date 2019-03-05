@@ -13,9 +13,22 @@
 .submit-btn {
     padding: 1em;
     margin: 1rem;
-    background-color: lightgreen;
+    background-color: #7edff6;
     border: 0;
     color: #fff;
     box-shadow: 2px 4px 4px #ddd;
     font-size: 16px;
+    width: 50%;
+}
+
+.btn-outlined {
+    width: 50%;
+}
+
+.subtitle {
+    text-align: center;
+}
+
+.actions {
+    display: flex;
 }

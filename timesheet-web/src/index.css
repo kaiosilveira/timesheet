@@ -1,13 +1,22 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'roboto', sans-serif;
 }
 
 .select-box {
   border: 1px solid #ddd;
   background-color: #fff;
   padding: 1em;
+}
+
+.input {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 1em;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 1em 0;
 }
 
 .field-group {
@@ -18,4 +27,15 @@ body {
 
 .label {
   margin: .5em 0;
+}
+
+.btn-outlined {
+  border: 2px solid #7edff6;
+  background-color: #fff;
+  padding: 1em;
+  margin: 1rem;
+  border: 0;
+  color: #000;
+  box-shadow: 2px 4px 4px #ddd;
+  font-size: 16px;
 }
