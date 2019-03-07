@@ -40,7 +40,7 @@ class InsightsService {
         }
     }
 
-    buildAverageWorkJourney = timesheet => {
+    buildAverageWorkJourneyCard = timesheet => {
         return {
             id: Math.floor(Math.random() * 1000),
             items: [
@@ -61,12 +61,34 @@ class InsightsService {
 
     }
 
+    buildHoursGoalCard = timesheet => {
+        const workedHours = timesheet.map(i => i.to - i.from - i.pause).reduce((sum, i) => sum += i, 0)
+        return {
+            id: Math.floor(Math.random() * 1000),
+            items: [
+                {
+                    text: 'Faltam',
+                    highlight: false
+                },
+                {
+                    text: `${workedHours === 0 ? 100 : ((workedHours - 176 / 176) * 100)}%`,
+                    highlight: true
+                },
+                {
+                    text: 'para atingir sua meta de horas',
+                    highlight: false
+                },
+            ]
+        }
+    }
+
     getAverageWorkHoursPerDay = timesheet => (timesheet.map(day => day.to - day.from - day.pause).reduce((sum, i) => sum += i, 0) || 0) / (timesheet.length || 1)
 
     createInsightCards = (hourValue, timesheet) => [
         this.buildCurrentEarningsCard(hourValue, timesheet),
         this.buildForecastCard(hourValue, timesheet),
-        this.buildAverageWorkJourney(timesheet)
+        this.buildAverageWorkJourneyCard(timesheet),
+        this.buildHoursGoalCard(timesheet)
     ]
 }
 
