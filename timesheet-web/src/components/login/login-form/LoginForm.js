@@ -39,8 +39,10 @@ class LoginForm extends React.Component {
                 }}>
                     <input className="input" value={this.state.username} onChange={this.handleUsernameChange} type="text" placeholder="username" />
                     <input className="input" value={this.state.password} onChange={this.handlePasswordChange} type="password" placeholder="password" />
+
                     <button className="login-btn">Entrar</button>
-                    <ErrorMsg text={this.state.errorMsg || loginError} visible={this.state.hasError || loginError} />
+
+                    <ErrorMsg text={this.state.errorMsg || loginError} visible={!!this.state.hasError || !!loginError} />
                 </form>
             </div>
         )

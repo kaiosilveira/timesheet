@@ -5,7 +5,14 @@ import currentPeriod from './currentPeriod'
 import loginError from './loginError'
 import isAuthorized from './isAuthorized'
 import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
 
-const mainReducer = combineReducers({ user, insights, timesheet, currentPeriod, loginError, isAuthorized })
-
-export default mainReducer
+export default history => combineReducers({
+    router: connectRouter(history),
+    user,
+    insights,
+    timesheet,
+    currentPeriod,
+    loginError,
+    isAuthorized
+})

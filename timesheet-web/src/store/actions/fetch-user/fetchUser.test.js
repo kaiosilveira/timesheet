@@ -2,8 +2,8 @@ import fetchMock from 'fetch-mock'
 import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import fetchUser from './fetchUser';
-import { RECEIVE_USER } from '../ACTION_TYPES';
-import API_URL from '../../../api/API_URL';
+import { RECEIVE_USER } from '../ACTION_TYPES'
+import API_URL from '../../../api/API_URL'
 
 describe('fetchUser', () => {
 

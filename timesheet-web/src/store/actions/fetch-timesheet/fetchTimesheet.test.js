@@ -1,9 +1,9 @@
 import fetchMock from 'fetch-mock'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
-import API_URL from '../../../api/API_URL';
-import { RECEIVE_TIMESHEET } from '../ACTION_TYPES';
-import fetchTimesheet from './fetchTimesheet';
+import API_URL from '../../../api/API_URL'
+import { RECEIVE_TIMESHEET } from '../ACTION_TYPES'
+import fetchTimesheet from './fetchTimesheet'
 
 describe('fetchTimesheet', () => {
 
@@ -26,7 +26,7 @@ describe('fetchTimesheet', () => {
         const store = mockStore({ timesheet: [] })
         const expectedActions = [{ type: RECEIVE_TIMESHEET, timesheet }]
 
-        store.dispatch(fetchTimesheet(period)).then(() => {
+        store.dispatch(fetchTimesheet(period._id)).then(() => {
             expect(expectedActions).toEqual(store.getActions())
         })
 

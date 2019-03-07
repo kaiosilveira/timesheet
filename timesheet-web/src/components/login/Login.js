@@ -19,7 +19,6 @@ const Login = ({ onSubmit, onChange, loginError }) => (
 const mapDispatchToProps = (dispatch, { history }) => ({
     onSubmit: (username, password) => {
         return dispatch(login(username, password))
-        .then(() => history.push('/'))
     },
     onChange: () => dispatch(restoreLoginErrors())
 })

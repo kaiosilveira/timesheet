@@ -38,7 +38,9 @@ describe('login action', () => {
 
         const store = mockStore({ user: {} })
         const expectedActions = [
+        
             { type: IS_AUTHORIZED, isAuthorized: true },
+            { payload: { args: ['/'], method: 'push'}, type: '@@router/CALL_HISTORY_METHOD' },
             { type: RECEIVE_USER, user }
         ]
         
@@ -50,11 +52,10 @@ describe('login action', () => {
 
     it('should emit an action to notify error if login failed', () => {
         
-        const error = { throws: 'Internal Error', status: 500 }
-        fetchMock.postOnce(`${API_URL}/auth`, { throws: 'Internal Error', status: 500 })
+        fetchMock.postOnce(`${API_URL}/auth`, { msg: 'Internal Error', status: 500 })
 
         const store = mockStore({ user: [], loginError: '' })
-        const expectedActions = [{ type: LOGIN_ERROR, error: error.throws }]
+        const expectedActions = [{ type: LOGIN_ERROR, error: 'Credenciais inválidas' }]
 
         return store.dispatch(login(credentials)).then(() => {
             expect(store.getActions()).toEqual(expectedActions)

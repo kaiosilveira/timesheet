@@ -1,4 +1,4 @@
-import padLeft from './padLeft';
+import padLeft from './padLeft'
 
 describe('padLeft', () => {
 

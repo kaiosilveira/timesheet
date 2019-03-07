@@ -1,4 +1,4 @@
-import decimalToHour from './decimalToHour';
+import decimalToHour from './decimalToHour'
 
 describe('decimalToHour', () => {
 
@@ -8,4 +8,7 @@ describe('decimalToHour', () => {
         expect(hour).toEqual('09:30')
     })
 
+    it('should round zeros correctly', () => {
+        expect(decimalToHour(9).split(':')[1]).toEqual('00')
+    })
 })

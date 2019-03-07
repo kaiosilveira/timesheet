@@ -10,11 +10,7 @@ class UserService {
         'Content-Type': 'application/json',
         'body': JSON.stringify(credentials)
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json();
-        } else throw new Error('Request rejected')
-    })
+    .then(res => res.ok ? res.json() : null)
 }
 
 export default UserService

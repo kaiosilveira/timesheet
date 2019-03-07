@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { Router, Route, Redirect } from 'react-router-dom'
 
 import App from './components/app/App'
 import HourForm from './components/hour-form/HourForm'
@@ -14,6 +14,7 @@ import isAuthorized from './store/actions/is-authorized/isAuthorized'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { ConnectedRouter, push } from 'connected-react-router'
 
 library.add(faBars)
 
@@ -27,24 +28,29 @@ class Root extends React.Component {
 
         const { store } = this.props
         const token = localStorage.getItem('token')
+
+        if (!token) { return }
+
         const user = jwt_decode(token)
         
-        if (!token || !user) { return }
+        if (!user) { return }
 
         store.dispatch(receiveUser(user))
         store.dispatch(isAuthorized(true))
 
         store
         .dispatch(fetchCurrentPeriod(user._id))
-        .then(() => store.dispatch(fetchTimesheet(store.getState().currentPeriod)))
+        .then(() => store.dispatch(fetchTimesheet(store.getState().currentPeriod._id)))
+        .then(() => store.dispatch(push('/')))
     }
 
     render() {
-        const { store } = this.props
+        const { store, history, context } = this.props
 
         return (
             <Provider store={store}>
-                <Router>
+            <ConnectedRouter history={history} context={context}>
+                <Router history={history}>
                     <div>
                         <Route path="/login" component={Login} />
         
@@ -57,6 +63,7 @@ class Root extends React.Component {
                         } />
                     </div>
                 </Router>
+            </ConnectedRouter>
             </Provider>
         )
     }
