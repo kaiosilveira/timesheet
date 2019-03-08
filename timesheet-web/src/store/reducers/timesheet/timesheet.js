@@ -1,4 +1,4 @@
-import { APPEND_WORK_JOURNEY, RECEIVE_TIMESHEET } from '../actions/ACTION_TYPES'
+import { APPEND_WORK_JOURNEY, RECEIVE_TIMESHEET } from '../../actions/ACTION_TYPES'
 
 
 const timesheet = (state = [], action) => {

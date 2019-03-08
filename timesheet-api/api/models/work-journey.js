@@ -24,5 +24,5 @@ const schema = mongoose.Schema({
     }
 });
 
-const WorkJourney = mongoose.model('workJourneys', schema);
+const WorkJourney = mongoose.model('workjourneys', schema);
 module.exports = WorkJourney;

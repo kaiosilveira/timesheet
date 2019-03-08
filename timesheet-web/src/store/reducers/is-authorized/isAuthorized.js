@@ -1,4 +1,4 @@
-import { IS_AUTHORIZED } from '../actions/ACTION_TYPES'
+import { IS_AUTHORIZED } from '../../actions/ACTION_TYPES'
 
 const isAuthorized = (state = false, { type, isAuthorized }) => {
     switch (type) {

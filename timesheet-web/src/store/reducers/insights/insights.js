@@ -1,4 +1,4 @@
-import { RECEIVE_INSIGHTS } from '../actions/ACTION_TYPES'
+import { RECEIVE_INSIGHTS } from '../../actions/ACTION_TYPES'
 
 const insights = (state = [], { type, insights }) => {
     switch(type) {

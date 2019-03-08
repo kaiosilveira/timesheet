@@ -1,4 +1,4 @@
-import { RECEIVE_USER } from '../actions/ACTION_TYPES'
+import { RECEIVE_USER } from '../../actions/ACTION_TYPES'
 
 const initialState = {
     name: '',

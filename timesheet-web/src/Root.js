@@ -13,10 +13,11 @@ import * as jwt_decode from 'jwt-decode'
 import isAuthorized from './store/actions/is-authorized/isAuthorized'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { ConnectedRouter, push } from 'connected-react-router'
 
 library.add(faBars)
+library.add(faPlus)
 
 const Protected = (authed, Component, props) => authed
     ? <Component {...props} />
