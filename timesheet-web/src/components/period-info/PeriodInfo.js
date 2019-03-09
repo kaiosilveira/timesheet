@@ -1,8 +1,8 @@
 import React from 'react'
-import getTotalWeekDaysOfCurrentMonth from '../../utils/get-total-weekdays-until-the-end-of-month/getTotalWeekDaysUntilTheEndOfMonth'
+import getTotalWeekDaysUntilTheEndOfMonth from '../../utils/get-total-weekdays-until-the-end-of-month/getTotalWeekDaysUntilTheEndOfMonth'
 
 const PeriodInfo = () => (
-    <p>Faltam {getTotalWeekDaysOfCurrentMonth(new Date())} dias úteis para o térimo do período.</p>
+    <p>Faltam {getTotalWeekDaysUntilTheEndOfMonth(new Date())} dias úteis para o término do período.</p>
 )
 
 export default PeriodInfo

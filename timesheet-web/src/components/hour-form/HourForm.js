@@ -11,15 +11,14 @@ import './HourForm.css'
 const HourForm = props => {
 
     const { onSubmit, history } = props;
-    let from, to, pause;
+    let from, to, pause, date;
 
     return (
         <section>
             <h2 className="subtitle">Registrar horas</h2>
             <form className="form" onSubmit={e => {
                 e.preventDefault()
-                onSubmit(parseInt(from.value), parseInt(to.value), parseInt(pause.value))
-                .then(() => history.push('/'))
+                onSubmit(parseInt(from.value), parseInt(to.value), parseInt(pause.value), date)
             }}>
                 <div className="field-group">
                     <label className="label">Das:</label>
@@ -40,6 +39,10 @@ const HourForm = props => {
                         {PAUSE_HOURS.map(ph => (<option key={ph.value} value={ph.value}>{ph.label}</option>))}
                     </select>
                 </div>
+                <div className="field-group">
+                    <label className="label">Data:</label>
+                    <input type="date" className="input" ref={ node => date = node } />
+                </div>
                 <div className="actions">
                     <button className="btn-outlined" onClick={ () => history.push('/') }>Voltar</button>
                     <button type="submit" className="submit-btn">Salvar</button>
@@ -56,8 +59,8 @@ HourForm.propTypes = {
 const mapStateToProps = (state, { history }) => ({ history })
 
 const mapDispatchToProps = dispatch => ({
-    onSubmit: (from, to, pause) => {
-        return dispatch(registerWorkJourney({ date: new Date(), from, to, pause }))
+    onSubmit: (from, to, pause, date) => {
+        return dispatch(registerWorkJourney({ date, from, to, pause }))
     }
 })
 

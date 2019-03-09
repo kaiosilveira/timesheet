@@ -4,7 +4,7 @@ class InsightsService {
 
     buildCurrentEarningsCard = (hourValue, timesheet) => {
         return {
-            id: Math.floor(Math.random() * 1000),
+            id: 1,
             className: 'text-green',
             items: [
                 {
@@ -25,7 +25,7 @@ class InsightsService {
         const averageWorkHours = this.getAverageWorkHoursPerDay(timesheet) || 8
 
         return {
-            id: Math.floor(Math.random() * 1000),
+            id: 2,
             className: 'green',
             items: [
                 {
@@ -42,7 +42,7 @@ class InsightsService {
 
     buildAverageWorkJourneyCard = timesheet => {
         return {
-            id: Math.floor(Math.random() * 1000),
+            id: 3,
             items: [
                 {
                     text: 'Você trabalha em média',
@@ -64,7 +64,7 @@ class InsightsService {
     buildHoursGoalCard = timesheet => {
         const workedHours = timesheet.map(i => i.to - i.from - i.pause).reduce((sum, i) => sum += i, 0)
         return {
-            id: Math.floor(Math.random() * 1000),
+            id: 4,
             items: [
                 {
                     text: 'Faltam',

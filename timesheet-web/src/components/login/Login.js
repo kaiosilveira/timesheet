@@ -16,7 +16,7 @@ const Login = ({ onSubmit, onChange, loginError }) => (
     </section>
 )
 
-const mapDispatchToProps = (dispatch, { history }) => ({
+const mapDispatchToProps = (dispatch) => ({
     onSubmit: (username, password) => {
         return dispatch(login(username, password))
     },
