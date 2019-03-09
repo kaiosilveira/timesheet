@@ -8,9 +8,8 @@ import WORK_HOURS, { PAUSE_HOURS } from '../../constraints/WORK_HOURS'
 
 import './HourForm.css'
 
-const HourForm = props => {
+const HourForm = ({ onSubmit, history }) => {
 
-    const { onSubmit, history } = props;
     let from, to, pause, date;
 
     return (
@@ -18,7 +17,7 @@ const HourForm = props => {
             <h2 className="subtitle">Registrar horas</h2>
             <form className="form" onSubmit={e => {
                 e.preventDefault()
-                onSubmit(parseInt(from.value), parseInt(to.value), parseInt(pause.value), date)
+                onSubmit(from.value, to.value, pause.value, date.value)
             }}>
                 <div className="field-group">
                     <label className="label">Das:</label>
@@ -56,12 +55,10 @@ HourForm.propTypes = {
     history: PropTypes.object.isRequired
 }
 
-const mapStateToProps = (state, { history }) => ({ history })
-
 const mapDispatchToProps = dispatch => ({
     onSubmit: (from, to, pause, date) => {
         return dispatch(registerWorkJourney({ date, from, to, pause }))
     }
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HourForm))
+export default withRouter(connect(null, mapDispatchToProps)(HourForm))

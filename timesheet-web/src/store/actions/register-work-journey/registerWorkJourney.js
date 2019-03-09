@@ -7,7 +7,7 @@ const registerWorkJourney = workJourney => (dispatch, getState) => {
     return new TimesheetService(state.currentPeriod._id)
     .register(workJourney)
     .then(wd => dispatch(appendTimesheet(wd)))
-    .then(() => push('/'))
+    .then(() => dispatch(push('/')))
 }
 
 export default registerWorkJourney

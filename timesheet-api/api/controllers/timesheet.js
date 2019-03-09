@@ -20,7 +20,8 @@ class TimesheetController {
     async registerWorkJourney(req, res) {
         try {
 
-            const workJourney = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+            const workJourney = req.body;
+            console.log(workJourney);
 
             if (!workJourney) {
                 res.status(400).json(notifyError('Bad request. Object is empty.'));

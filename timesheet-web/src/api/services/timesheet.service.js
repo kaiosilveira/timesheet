@@ -2,7 +2,7 @@ import API_URL from '../API_URL'
 import 'cross-fetch/polyfill'
 
 class TimesheetService {
-    
+
     constructor(periodId) {
         this.periodId = periodId
     }
@@ -13,12 +13,13 @@ class TimesheetService {
     }
 
     register(workJourney) {
-        workJourney.period = this.periodId;
+
+        workJourney.period = this.periodId
+
         return fetch(`${API_URL}/timesheet/${this.periodId}`, {
-            'method': 'POST',
-            'body': JSON.stringify(workJourney),
-            'Content-Type': 'application/json',
-            'mode': 'cors'
+            method: 'POST',
+            body: JSON.stringify(workJourney),
+            headers: { 'Content-Type': 'application/json' }
         })
         .then(
             res => res.json(),

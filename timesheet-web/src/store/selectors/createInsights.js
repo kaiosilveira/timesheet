@@ -6,7 +6,7 @@ const getTimesheet = state => state.timesheet
 
 const createInsights = createSelector(
     [getHourValue, getTimesheet],
-    (hourValue, timesheet) => new InsightsService().createInsightCards(hourValue, timesheet)
+    (hourValue, timesheet) => new InsightsService(true).createInsightCards(hourValue, timesheet)
 )
 
 export default createInsights

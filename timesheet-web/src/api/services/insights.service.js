@@ -1,6 +1,12 @@
+import isWeekDay from '../../utils/is-weekday/isWeekDay'
 import getTotalWeekDaysOfMonth from '../../utils/get-total-weekdays-of-month/getTotalWeekDaysOfMonth'
+import getTotalWeekDaysUntilTheEndOfMonth from '../../utils/get-total-weekdays-until-the-end-of-month/getTotalWeekDaysUntilTheEndOfMonth'
 
 class InsightsService {
+
+    constructor(ignoreSaturdaysOnAvg) {
+        this.ignoreSaturdaysOnAvg = ignoreSaturdaysOnAvg
+    }
 
     buildCurrentEarningsCard = (hourValue, timesheet) => {
         return {
@@ -8,7 +14,7 @@ class InsightsService {
             className: 'text-green',
             items: [
                 {
-                    text: `${(hourValue * timesheet.map(i => i.to - i.from - i.pause).reduce((sum, i) => sum += i, 0)).toFixed(2)}`,
+                    text: `${this.getCurrentEarnings(hourValue, timesheet).toFixed(2)}`,
                     highlight: true
                 },
                 {
@@ -19,11 +25,22 @@ class InsightsService {
         }
     }
 
+    getCurrentEarnings = (hourValue, timesheet) => {
+        return (
+            hourValue * timesheet
+            .map(i => i.to - i.from - i.pause)
+            .reduce((sum, i) => sum += i, 0)
+        )
+    }
+
     buildForecastCard = (hourValue, timesheet) => {
 
-        const totalDaysOfCurrentMonth = getTotalWeekDaysOfMonth(new Date())
-        const averageWorkHours = this.getAverageWorkHoursPerDay(timesheet) || 8
+        const weekDaysUntilTheEndOfMonth = getTotalWeekDaysUntilTheEndOfMonth(new Date())
+        const averageWorkHours = this.getAverageWorkHoursPerDay(timesheet, this.ignoreSaturdaysOnAvg) || 8
+        const currentEarnings = this.getCurrentEarnings(hourValue, timesheet)
 
+        console.log(currentEarnings, averageWorkHours, weekDaysUntilTheEndOfMonth)
+        
         return {
             id: 2,
             className: 'green',
@@ -33,7 +50,7 @@ class InsightsService {
                     highlight: false
                 },
                 {
-                    text: `${(hourValue * totalDaysOfCurrentMonth * averageWorkHours).toFixed(2)}`,
+                    text: `${(currentEarnings + (hourValue * weekDaysUntilTheEndOfMonth * averageWorkHours)).toFixed(2)}`,
                     highlight: true
                 }
             ]
@@ -49,7 +66,7 @@ class InsightsService {
                     highlight: false
                 },
                 {
-                    text: `${(this.getAverageWorkHoursPerDay(timesheet)).toFixed(2)}`,
+                    text: `${(this.getAverageWorkHoursPerDay(timesheet, this.ignoreSaturdaysOnAvg)).toFixed(2)}`,
                     highlight: true
                 },
                 {
@@ -58,7 +75,6 @@ class InsightsService {
                 },
             ]
         }
-
     }
 
     buildHoursGoalCard = timesheet => {
@@ -71,7 +87,7 @@ class InsightsService {
                     highlight: false
                 },
                 {
-                    text: `${workedHours === 0 ? 100 : ((workedHours - 176 / 176) * 100)}%`,
+                    text: `${workedHours === 0 ? 100 : ((100 - (workedHours / 176 * 100))).toFixed(2)}%`,
                     highlight: true
                 },
                 {
@@ -82,7 +98,12 @@ class InsightsService {
         }
     }
 
-    getAverageWorkHoursPerDay = timesheet => (timesheet.map(day => day.to - day.from - day.pause).reduce((sum, i) => sum += i, 0) || 0) / (timesheet.length || 1)
+    getAverageWorkHoursPerDay = (timesheet, ignoreSaturdaysOnAvg) => {
+
+        const filtered = ignoreSaturdaysOnAvg ? timesheet.filter(i => isWeekDay(new Date(i.date).getUTCDay())) : timesheet
+
+        return (filtered.map(day => day.to - day.from - day.pause).reduce((sum, i) => sum += i, 0) || 0) / (filtered.length || 1)
+    }
 
     createInsightCards = (hourValue, timesheet) => [
         this.buildCurrentEarningsCard(hourValue, timesheet),
