@@ -1,0 +1,29 @@
+@import '../../theme.scss';
+
+body {
+    background-color: #eee;
+}
+
+.timesheet-box {
+    display: flex;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    margin: 1em;
+    box-shadow: 2px 8px 8px #ddd;
+    background-color: #fff;
+
+    .date-info {
+        display: flex;
+        flex-direction: column;
+        font-size: 32px;
+        width: 20%;
+        padding: .5em;
+        background-color: $primary-color;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .work-journey-info {
+        padding: .5em;
+    }
+}

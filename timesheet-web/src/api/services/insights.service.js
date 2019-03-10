@@ -1,5 +1,4 @@
 import isWeekDay from '../../utils/is-weekday/isWeekDay'
-import getTotalWeekDaysOfMonth from '../../utils/get-total-weekdays-of-month/getTotalWeekDaysOfMonth'
 import getTotalWeekDaysUntilTheEndOfMonth from '../../utils/get-total-weekdays-until-the-end-of-month/getTotalWeekDaysUntilTheEndOfMonth'
 
 class InsightsService {
@@ -39,8 +38,6 @@ class InsightsService {
         const averageWorkHours = this.getAverageWorkHoursPerDay(timesheet, this.ignoreSaturdaysOnAvg) || 8
         const currentEarnings = this.getCurrentEarnings(hourValue, timesheet)
 
-        console.log(currentEarnings, averageWorkHours, weekDaysUntilTheEndOfMonth)
-        
         return {
             id: 2,
             className: 'green',

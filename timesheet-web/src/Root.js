@@ -5,12 +5,14 @@ import { Router, Route, Redirect } from 'react-router-dom'
 import App from './components/app/App'
 import HourForm from './components/hour-form/HourForm'
 import Login from './components/login/Login'
+import Timesheet from './components/timesheet/Timesheet'
+
 import fetchCurrentPeriod from './store/actions/fetch-current-period/fetchCurrentPeriod'
 import fetchTimesheet from './store/actions/fetch-timesheet/fetchTimesheet'
 import receiveUser from './store/actions/receive-user/receiveUser'
+import isAuthorized from './store/actions/is-authorized/isAuthorized'
 
 import * as jwt_decode from 'jwt-decode'
-import isAuthorized from './store/actions/is-authorized/isAuthorized'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBars, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -42,7 +44,7 @@ class Root extends React.Component {
         store
         .dispatch(fetchCurrentPeriod(user._id))
         .then(() => store.dispatch(fetchTimesheet(store.getState().currentPeriod._id)))
-        .then(() => store.dispatch(push('/')))
+        // .then(() => store.dispatch(push('/'))) FIX THIS
     }
 
     render() {
@@ -61,6 +63,10 @@ class Root extends React.Component {
         
                         <Route path="/add" render={
                             props => Protected(store.getState().isAuthorized, HourForm, props)
+                        } />
+
+                        <Route path="/timesheet" render={
+                            props => Protected(store.getState().isAuthorized, Timesheet, props)
                         } />
                     </div>
                 </Router>
