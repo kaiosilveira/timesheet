@@ -41,10 +41,16 @@ class Root extends React.Component {
         store.dispatch(receiveUser(user))
         store.dispatch(isAuthorized(true))
 
+        const currentPath = window.location.pathname
+
         store
         .dispatch(fetchCurrentPeriod(user._id))
         .then(() => store.dispatch(fetchTimesheet(store.getState().currentPeriod._id)))
-        // .then(() => store.dispatch(push('/'))) FIX THIS
+        .then(() => {
+            if (currentPath === `/login`) {
+                store.dispatch(push('/'))
+            }
+        })
     }
 
     render() {

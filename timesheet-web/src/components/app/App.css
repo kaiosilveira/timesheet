@@ -2,18 +2,6 @@
   text-align: center;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-  width: 100%;
-  background-color: #7edff6;
-  box-sizing: border-box;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-}
-
 .menu {
   list-style: none;
   display: flex;
@@ -22,4 +10,10 @@
   justify-content: flex-end;
   align-items: flex-end;
   width: 100%;
+}
+
+.main-content {
+  background-color: #fff;
+  padding: 1em;
+  box-shadow: 2px 4px 4px #ddd;
 }

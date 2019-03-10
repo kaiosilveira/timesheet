@@ -3,10 +3,7 @@ import Insights from '../insights/Insights'
 import PeriodInfo from '../period-info/PeriodInfo'
 
 const Dashboard = () => (
-    <section>
-        <PeriodInfo />
-        <Insights />
-    </section>
+    <Insights />
 )
 
 export default Dashboard
