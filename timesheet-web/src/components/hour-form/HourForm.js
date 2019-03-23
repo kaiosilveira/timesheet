@@ -43,8 +43,8 @@ const HourForm = ({ onSubmit, history }) => {
                     <input type="date" className="input" ref={ node => date = node } />
                 </div>
                 <div className="actions">
-                    <button className="btn-outlined" onClick={ () => history.push('/') }>Voltar</button>
-                    <button type="submit" className="submit-btn">Salvar</button>
+                    <button className="btn is-half-width" onClick={ () => history.push('/') }>Voltar</button>
+                    <button type="submit" className="btn is-primary is-half-width">Salvar</button>
                 </div>
             </form>
         </section>

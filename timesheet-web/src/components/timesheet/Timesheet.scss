@@ -4,6 +4,15 @@ body {
     background-color: #eee;
 }
 
+.list-title {
+    text-align: center;
+    margin: 0;
+    padding: .5em;
+    background-color: #fff;
+    box-shadow: 2px 4px 4px #ddd;
+    font-size: 22px;
+}
+
 .timesheet-box {
     display: flex;
     border: 1px solid #ddd;
@@ -15,6 +24,8 @@ body {
     .date-info {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
         font-size: 32px;
         width: 20%;
         padding: .5em;
@@ -25,5 +36,19 @@ body {
 
     .work-journey-info {
         padding: .5em;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        font-size: 22px;
+    }
+
+    .actions {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }

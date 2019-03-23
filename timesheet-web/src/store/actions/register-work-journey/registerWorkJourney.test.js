@@ -32,7 +32,10 @@ describe('registerWorkJourney', () => {
             }
         })
 
-        const expectedActions = [ { type: APPEND_WORK_JOURNEY, workJourney } ]
+        const expectedActions = [
+            { type: APPEND_WORK_JOURNEY, workJourney },
+            { payload: { args: ['/'], method: 'push'}, type: '@@router/CALL_HISTORY_METHOD'}
+        ]
 
         const store = mockStore({ timesheet: [], currentPeriod: { _id: periodId } })
 

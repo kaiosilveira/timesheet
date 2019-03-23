@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import login from './login'
 import configureMockStore from 'redux-mock-store'
 import API_URL from '../../../api/API_URL'
-import { RECEIVE_USER, LOGIN_ERROR, IS_AUTHORIZED, FETCH_CURRENT_PERIOD, FETCH_TIMESHEET } from '../ACTION_TYPES'
+import { RECEIVE_USER, LOGIN_ERROR, IS_AUTHORIZED } from '../ACTION_TYPES'
 import decode from 'jwt-decode'
 
 describe('login action', () => {
@@ -38,7 +38,6 @@ describe('login action', () => {
 
         const store = mockStore({ user: {} })
         const expectedActions = [
-        
             { type: IS_AUTHORIZED, isAuthorized: true },
             { payload: { args: ['/'], method: 'push'}, type: '@@router/CALL_HISTORY_METHOD' },
             { type: RECEIVE_USER, user }

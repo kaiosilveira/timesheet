@@ -6,6 +6,7 @@ import App from './components/app/App'
 import HourForm from './components/hour-form/HourForm'
 import Login from './components/login/Login'
 import Timesheet from './components/timesheet/Timesheet'
+import Navbar from './components/_shared/navbar/Navbar'
 
 import fetchCurrentPeriod from './store/actions/fetch-current-period/fetchCurrentPeriod'
 import fetchTimesheet from './store/actions/fetch-timesheet/fetchTimesheet'
@@ -15,11 +16,14 @@ import isAuthorized from './store/actions/is-authorized/isAuthorized'
 import * as jwt_decode from 'jwt-decode'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBars, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faPlus, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { ConnectedRouter, push } from 'connected-react-router'
 
 library.add(faBars)
 library.add(faPlus)
+library.add(faEdit)
+library.add(faEdit)
+library.add(faTrashAlt)
 
 const Protected = (authed, Component, props) => authed
     ? <Component {...props} />
@@ -61,6 +65,7 @@ class Root extends React.Component {
             <ConnectedRouter history={history} context={context}>
                 <Router history={history}>
                     <div>
+                        <Navbar title="Timesheet"/>
                         <Route path="/login" component={Login} />
         
                         <Route exact path="/" render={

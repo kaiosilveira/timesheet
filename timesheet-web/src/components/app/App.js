@@ -11,7 +11,6 @@ import './App.css'
 
 const App = () => (
   <div className="App">
-    <Navbar title="Timesheet"/>
     <main className="main-content">
       <DateInfo />
       <Greeting />

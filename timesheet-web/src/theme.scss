@@ -1,1 +1,43 @@
-$primary-color: #7edff6
+$primary-color: #7edff6;
+
+body {
+    color: 	#686868;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    border: 1px solid #eee;
+    padding: 1em;
+    margin: 1rem;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 1em;
+    margin: 1rem;
+    border: 0;
+    background-color: #fff;
+    color: #999;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.is-primary {
+    background-color: $primary-color;
+    color: #fff;
+    box-shadow: 2px 4px 4px #ddd;
+}
+
+.is-danger {
+    background-color: #f04b14;
+    color: #fff;
+}
+
+.is-half-width {
+    width: 50%;
+}

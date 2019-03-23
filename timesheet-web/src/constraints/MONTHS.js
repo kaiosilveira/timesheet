@@ -13,4 +13,6 @@ const MONTHS = [
     { name: 'Dezembro', days: 31 },
 ]
 
+export const getShortenedMonthName = month => MONTHS[month].name.slice(0, 3)
+
 export default MONTHS
