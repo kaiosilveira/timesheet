@@ -54,11 +54,11 @@ class Root extends React.Component {
                         } />
         
                         <Route path="/add" render={
-                            props => Protected(!!store.getState().user._id, HourForm, props)
+                            props => Protected(this.isAuthorized(), HourForm, props)
                         } />
 
                         <Route path="/timesheet" render={
-                            props => Protected(!!store.getState().user._id, Timesheet, props)
+                            props => Protected(this.isAuthorized(), Timesheet, props)
                         } />
                     </div>
                 </Router>

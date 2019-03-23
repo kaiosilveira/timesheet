@@ -13,8 +13,8 @@ const Timesheet = ({ timesheet, currentPeriod, editWorkJourney }) => (
                 timesheet.map(workJourney => (
                     <div key={workJourney._id} className="timesheet-box">
                         <div className="date-info">
-                            <span>{new Date(workJourney.date).getDate()}/</span>
-                            <span>{getShortenedMonthName(new Date(workJourney.date).getMonth())}</span>
+                            <span>{new Date(workJourney.date).getUTCDate()}/</span>
+                            <span>{getShortenedMonthName(new Date(workJourney.date).getUTCMonth())}</span>
                         </div>
                         <div className="work-journey-info">
                             <span>Início: {workJourney.from}</span>

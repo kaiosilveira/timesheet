@@ -29,7 +29,9 @@ export const restablishTimesheetLogic = createLogic({
         .list()
         .then(timesheet => {
             dispatch(fetchTimesheetSuccess(timesheet))
-            dispatch(push('/'))
+            if (window.location.pathname === 'login') {
+                dispatch(push('/'))
+            }
         })
         .catch(err => {
             console.log(err)
