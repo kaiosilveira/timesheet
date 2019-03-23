@@ -7,19 +7,14 @@ class LoginForm extends React.Component {
 
     constructor(props) {
         super(props)
-
-        this.state = {
-            username: '',
-            password: ''
-        }
-
+        this.state = { username: '', password: '' }
         this.handleUsernameChange = this.handleUsernameChange.bind(this)
         this.handlePasswordChange = this.handlePasswordChange.bind(this)
     }
 
     render() {
 
-        const { onSubmit, loginError } = this.props
+        const { onSubmit } = this.props
 
         return (
             <div className="login-box">
@@ -41,8 +36,6 @@ class LoginForm extends React.Component {
                     <input className="input" value={this.state.password} onChange={this.handlePasswordChange} type="password" placeholder="password" />
 
                     <button className="login-btn">Entrar</button>
-
-                    <ErrorMsg text={this.state.errorMsg || loginError} visible={!!this.state.hasError || !!loginError} />
                 </form>
             </div>
         )
@@ -50,13 +43,11 @@ class LoginForm extends React.Component {
     }
 
     handleUsernameChange(e) {
-        this.props.onChange()
         const username = e.target.value
         this.setState({ username, hasError: false })
     }
 
     handlePasswordChange(e) {
-        this.props.onChange()
         const password = e.target.value
         this.setState({ password, hasError: false })
     }

@@ -3,12 +3,19 @@ import { createBrowserHistory } from 'history'
 import thunkMiddleware from 'redux-thunk'
 import { routerMiddleware } from 'connected-react-router'
 
-import rootReducer from './reducers/root-reducer/rootReducer'
+import rootReducer from './rootReducer'
+import { createLogicMiddleware } from 'redux-logic'
+import timesheetLogic from './timesheet/logic'
+import periodLogic from './period/logic'
+import userLogic from './user/logic'
 
 export const history = createBrowserHistory()
 
+const arrLogic = [...timesheetLogic, ...periodLogic, ...userLogic]
+const logicMiddleware = createLogicMiddleware(arrLogic)
+
 export default function configureStore() {
     return createStore(rootReducer(history), {}, compose(
-        applyMiddleware(routerMiddleware(history), thunkMiddleware)
+        applyMiddleware(routerMiddleware(history), thunkMiddleware, logicMiddleware)
     ))
 }

@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getShortenedMonthName } from '../../constraints/MONTHS'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import editWorkJourney from '../../store/actions/edit-work-journey/editWorkJourney';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Timesheet.scss'
 
@@ -44,8 +43,4 @@ const Timesheet = ({ timesheet, currentPeriod, editWorkJourney }) => (
 
 const mapStateToProps = ({ timesheet, currentPeriod }) => ({ timesheet, currentPeriod })
 
-const mapDispatchToProps = ({ dispatch }) => ({
-    edit: workJourney => dispatch(editWorkJourney(workJourney))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Timesheet)
+export default connect(mapStateToProps)(Timesheet)

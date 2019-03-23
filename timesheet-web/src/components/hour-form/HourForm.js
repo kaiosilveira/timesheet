@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 
-import registerWorkJourney from '../../store/actions/register-work-journey/registerWorkJourney'
 import WORK_HOURS, { PAUSE_HOURS } from '../../constraints/WORK_HOURS'
+import { registerWorkJourney } from '../../store/timesheet/duck'
 
 import './HourForm.css'
 

@@ -95,6 +95,22 @@ class InsightsService {
         }
     }
 
+    buildTotalWorkedHoursCard = (timesheet) => {
+        return {
+            id: 5,
+            items: [
+                {
+                    text: `${timesheet.map(i => i.to - i.from - i.pause).reduce((t, i) => t += i, 0)}`,
+                    highlight: true
+                },
+                {
+                    text: 'horas trabalhadas esse mês',
+                    highlight: false
+                },
+            ]
+        }
+    }
+
     getAverageWorkHoursPerDay = (timesheet, ignoreSaturdaysOnAvg) => {
 
         const filtered = ignoreSaturdaysOnAvg ? timesheet.filter(i => isWeekDay(new Date(i.date).getUTCDay())) : timesheet
@@ -105,6 +121,7 @@ class InsightsService {
     createInsightCards = (hourValue, timesheet) => [
         this.buildCurrentEarningsCard(hourValue, timesheet),
         this.buildForecastCard(hourValue, timesheet),
+        this.buildTotalWorkedHoursCard(timesheet),
         this.buildAverageWorkJourneyCard(timesheet),
         this.buildHoursGoalCard(timesheet)
     ]

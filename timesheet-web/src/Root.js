@@ -1,6 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'connected-react-router'
 import { Router, Route, Redirect } from 'react-router-dom'
+import * as jwt_decode from 'jwt-decode'
 
 import App from './components/app/App'
 import HourForm from './components/hour-form/HourForm'
@@ -8,22 +10,12 @@ import Login from './components/login/Login'
 import Timesheet from './components/timesheet/Timesheet'
 import Navbar from './components/_shared/navbar/Navbar'
 
-import fetchCurrentPeriod from './store/actions/fetch-current-period/fetchCurrentPeriod'
-import fetchTimesheet from './store/actions/fetch-timesheet/fetchTimesheet'
-import receiveUser from './store/actions/receive-user/receiveUser'
-import isAuthorized from './store/actions/is-authorized/isAuthorized'
-
-import * as jwt_decode from 'jwt-decode'
+import { restablishUserConnection } from './store/user/duck'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBars, faPlus, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { ConnectedRouter, push } from 'connected-react-router'
+import configureFontAwesomeIcons, { solidIcons } from './icons'
 
-library.add(faBars)
-library.add(faPlus)
-library.add(faEdit)
-library.add(faEdit)
-library.add(faTrashAlt)
+configureFontAwesomeIcons(library, solidIcons)
 
 const Protected = (authed, Component, props) => authed
     ? <Component {...props} />
@@ -39,22 +31,11 @@ class Root extends React.Component {
         if (!token) { return }
 
         const user = jwt_decode(token)
-        
+ 
         if (!user) { return }
 
-        store.dispatch(receiveUser(user))
-        store.dispatch(isAuthorized(true))
+        store.dispatch(restablishUserConnection(user))
 
-        const currentPath = window.location.pathname
-
-        store
-        .dispatch(fetchCurrentPeriod(user._id))
-        .then(() => store.dispatch(fetchTimesheet(store.getState().currentPeriod._id)))
-        .then(() => {
-            if (currentPath === `/login`) {
-                store.dispatch(push('/'))
-            }
-        })
     }
 
     render() {
@@ -69,21 +50,27 @@ class Root extends React.Component {
                         <Route path="/login" component={Login} />
         
                         <Route exact path="/" render={
-                            props => Protected(store.getState().isAuthorized, App, props)
+                            props => Protected(this.isAuthorized(), App, props)
                         } />
         
                         <Route path="/add" render={
-                            props => Protected(store.getState().isAuthorized, HourForm, props)
+                            props => Protected(!!store.getState().user._id, HourForm, props)
                         } />
 
                         <Route path="/timesheet" render={
-                            props => Protected(store.getState().isAuthorized, Timesheet, props)
+                            props => Protected(!!store.getState().user._id, Timesheet, props)
                         } />
                     </div>
                 </Router>
             </ConnectedRouter>
             </Provider>
         )
+    }
+
+    isAuthorized() {
+        const { store } = this.props
+        const authed = !!store.getState().user._id
+        return authed
     }
 }
 
