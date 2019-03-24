@@ -38,8 +38,6 @@ class WorkJourneyForm extends React.Component {
 
     render() {
         const { onSubmit, history } = this.props
-        let from, to, pause, date
-
         return (
             <section>
                 <h2 className="subtitle">Registrar horas</h2>
