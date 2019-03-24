@@ -7,7 +7,7 @@ import * as jwt_decode from 'jwt-decode'
 import App from './components/app/App'
 import HourForm from './components/hour-form/HourForm'
 import Login from './components/login/Login'
-import Timesheet from './components/timesheet/Timesheet'
+import TimesheetPage from './pages/TimesheetPage'
 import Navbar from './components/_shared/navbar/Navbar'
 
 import { restablishUserConnection } from './store/user/duck'
@@ -58,7 +58,7 @@ class Root extends React.Component {
                         } />
 
                         <Route path="/timesheet" render={
-                            props => Protected(this.isAuthorized(), Timesheet, props)
+                            props => Protected(this.isAuthorized(), TimesheetPage, props)
                         } />
                     </div>
                 </Router>
