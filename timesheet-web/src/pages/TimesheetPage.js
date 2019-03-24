@@ -8,4 +8,4 @@ const TimesheetPage = ({ timesheet, currentPeriod }) => (
 )
 
 const mapStateToProps = ({ timesheet, currentPeriod }) => ({ timesheet, currentPeriod })
-export default connect(mapStateToProps)(TimesheetPage)‹
+export default connect(mapStateToProps)(TimesheetPage)
