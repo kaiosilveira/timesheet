@@ -17,7 +17,7 @@ const App = () => (
       <PeriodInfo />
     </main>
     <Dashboard />
-    <FabLink icon="plus" path="/add" />
+    <FabLink icon="plus" path="/form" />
   </div>
 )
 

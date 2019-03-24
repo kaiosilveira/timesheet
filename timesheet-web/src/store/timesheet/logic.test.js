@@ -4,17 +4,13 @@ import fetchMock from 'fetch-mock'
 
 import API_URL from '../../api/API_URL'
 import reducer, {
-    FETCH_TIMESHEET, fetchTimesheet,
+    FETCH_TIMESHEET, FETCH_TIMESHEET_SUCCESS, fetchTimesheet,
     RESTABLISH_TIMESHEET, restablishTimesheet,
-    FETCH_TIMESHEET_SUCCESS,
-    registerWorkJourney,
-    REGISTER_WORK_JOURNEY_SUCCESS,
 } from './duck'
 import { createMockStore } from 'redux-logic-test'
 import {
     fetchTimesheetLogic,
-    restablishTimesheetLogic,
-    registerWorkJourneyLogic
+    restablishTimesheetLogic
 } from './logic'
 
 describe('fetchTimesheetLogic', () => {
@@ -86,8 +82,7 @@ describe('restablishTimesheetLogic', () => {
         store.whenComplete(() => {
             expect(store.actions).toEqual([
                 { type: RESTABLISH_TIMESHEET, payload: { periodId: period._id } },
-                { type: FETCH_TIMESHEET_SUCCESS, payload: timesheet },
-                { type: "@@router/CALL_HISTORY_METHOD", payload: {args: ['/'], method: "push"} }
+                { type: FETCH_TIMESHEET_SUCCESS, payload: timesheet }
             ])
         })
 
@@ -95,42 +90,4 @@ describe('restablishTimesheetLogic', () => {
 
     afterEach(() => fetchMock.reset())
 
-})
-
-describe('registerWorkJourneyLogic', () => {
-  
-    it('should handle REGISTER_WORK_JOURNEY action', () => {
-        
-        const period = { _id: 'j3k2jk32', name: 'Março - 2019' }
-        const workJourney = { from: 8, to: 18, pause: 1, date: (new Date()).toString(), period: 'ds89ads' }
-        const timesheet = [
-            { from: 9, to: 18, pause: 1, date: (new Date()).toString(), period: '213j321' },
-            { from: 8, to: 18, pause: 1, date: (new Date()).toString(), period: 'ds89ads' },
-        ]
-
-        fetchMock.postOnce(`${API_URL}/timesheet/${period._id}`, {
-            body: workJourney,
-            headers: { 'content-type': 'application/json' }
-        })
-        
-        const store = createMockStore({
-            initialState: { currentPeriod: period, timesheet },
-            reducer: combineReducers({
-                timesheet: reducer,
-                currentPeriod: (state = {}, action) => state
-            }),
-            logic: [registerWorkJourneyLogic]
-        })
-
-        store.dispatch(registerWorkJourney(workJourney))
-
-        store.whenComplete(() => {
-            expect(store.actions).toEqual([
-                { type: REGISTER_WORK_JOURNEY, payload: { workJourney }},
-                { type: REGISTER_WORK_JOURNEY_SUCCESS, payload: { workJourney }},
-                { type: "@@router/CALL_HISTORY_METHOD", payload: {args: ['/'], method: "push"} }
-            ])
-        })
-
-    })
 })

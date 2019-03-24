@@ -8,10 +8,11 @@ import { createLogicMiddleware } from 'redux-logic'
 import timesheetLogic from './timesheet/logic'
 import periodLogic from './period/logic'
 import userLogic from './user/logic'
+import workJourneyLogic from './work-journey/logic'
 
 export const history = createBrowserHistory()
 
-const arrLogic = [...timesheetLogic, ...periodLogic, ...userLogic]
+const arrLogic = [...timesheetLogic, ...periodLogic, ...userLogic, ...workJourneyLogic]
 const logicMiddleware = createLogicMiddleware(arrLogic)
 
 export default function configureStore() {

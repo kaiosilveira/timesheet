@@ -2,9 +2,8 @@ import reducer, {
     FETCH_TIMESHEET_SUCCESS, fetchTimesheetSuccess,
     FETCH_TIMESHEET, fetchTimesheet,
     FETCH_TIMESHEET_FAILED, fetchTimesheetFailed,
-    REGISTER_WORK_JOURNEY, registerWorkJourney,
-    REGISTER_WORK_JOURNEY_SUCCESS, registerWorkJourneySuccess,
-    REGISTER_WORK_JOURNEY_FAILED, registerWorkJourneyFailed
+    APPEND_WORK_JOURNEY,
+    appendWorkJourney
 } from './duck'
 
 describe('timesheet actions', () => {
@@ -34,28 +33,11 @@ describe('timesheet actions', () => {
         })
     })
 
-    it('should create an action to register a work journey', () => {
-        const workJourney = { from: 9, to: 18, pause: 1, date: new Date() }
-        expect(registerWorkJourney(workJourney)).toEqual({
-            type: REGISTER_WORK_JOURNEY,
-            payload: { workJourney }
-        })
-    })
-
     it('should create an action to append a work journey', () => {
         const workJourney = { from: 9, to: 18, pause: 1, date: new Date() }
-        expect(registerWorkJourneySuccess(workJourney)).toEqual({
-            type: REGISTER_WORK_JOURNEY_SUCCESS,
+        expect(appendWorkJourney(workJourney)).toEqual({
+            type: APPEND_WORK_JOURNEY,
             payload: { workJourney }
-        })
-    })
-
-    it('should create an action to notify if register work journey failed', () => {
-        const error = new Error('Network Error')
-        expect(registerWorkJourneyFailed(error)).toEqual({
-            type: REGISTER_WORK_JOURNEY_FAILED,
-            payload: error,
-            error: true
         })
     })
 })
@@ -69,7 +51,7 @@ describe('timesheet reducer', () => {
     it('should handle RECEIVE_TIMESHEET_SUCCESS actions', () => {
 
         const payload = [{ from: 9, to: 18, pause: 1, date: new Date() }]
-        
+
         expect(reducer({}, {
             type: FETCH_TIMESHEET_SUCCESS,
             payload
@@ -78,12 +60,12 @@ describe('timesheet reducer', () => {
     })
 
     it('should append a work journey', () => {
-        
+
         const timesheet = [{ from: 9, to: 18, pause: 1, date: new Date() }]
         const workJourney = { from: 9, to: 18, pause: 1, date: new Date() }
 
         expect(reducer(timesheet, {
-            type: REGISTER_WORK_JOURNEY_SUCCESS,
+            type: APPEND_WORK_JOURNEY,
             payload: { workJourney }
         })).toEqual([...timesheet, workJourney])
     

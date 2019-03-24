@@ -1,0 +1,27 @@
+.timesheet-box .work-journey-details {
+    display: flex;
+    flex-direction: row;
+
+    .hour-badge {
+        background-color: #ddd;
+        color: #fff;
+        font-weight: 'bold';
+        padding: .2em;
+        text-align: center;
+    
+        &.start {
+            background-color: green;
+            width: 30%;
+        }
+        
+        &.end {
+            background-color: red;
+            width: 30%;
+        }
+        
+        &.pause {
+            background-color: orange;
+            width: 40%;
+        }
+    }
+}

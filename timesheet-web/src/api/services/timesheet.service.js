@@ -26,6 +26,20 @@ class TimesheetService {
             err => console.log(err)
         )
     }
+
+    edit(workJourney) {
+        workJourney.period = this.periodId
+
+        return fetch(`${API_URL}/timesheet/${this.periodId}/workjourney/${workJourney._id}`, {
+            method: 'PUT',
+            body: JSON.stringify(workJourney),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(
+            res => res.json(),
+            err => console.log(err)
+        )
+    }
 }
 
 export default TimesheetService

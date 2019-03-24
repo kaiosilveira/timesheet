@@ -8,11 +8,7 @@ import {
     fetchTimesheetSuccess,
     fetchTimesheetFailed,
     RESTABLISH_TIMESHEET,
-    RESTABLISH_TIMESHEET_CANCEL,
-    REGISTER_WORK_JOURNEY,
-    REGISTER_WORK_JOURNEY_CANCEL,
-    registerWorkJourneySuccess,
-    registerWorkJourneyFailed,
+    RESTABLISH_TIMESHEET_CANCEL
 } from './duck'
 
 export const restablishTimesheetLogic = createLogic({
@@ -63,27 +59,4 @@ export const fetchTimesheetLogic = createLogic({
 
 })
 
-export const registerWorkJourneyLogic = createLogic({
-
-    type: REGISTER_WORK_JOURNEY,
-
-    cancelType: REGISTER_WORK_JOURNEY_CANCEL,
-
-    process({ getState, action }, dispatch, done) {
-
-        new TimesheetService(getState().currentPeriod._id)
-        .register(action.payload.workJourney)
-        .then(registered => {
-            dispatch(registerWorkJourneySuccess(registered))
-            dispatch(push('/'))
-        })
-        .catch(err => {
-            console.log(err)
-            dispatch(registerWorkJourneyFailed(err))
-        })
-        .then(() => done())
-    }
-
-})
-
-export default [fetchTimesheetLogic, restablishTimesheetLogic, registerWorkJourneyLogic]
+export default [fetchTimesheetLogic, restablishTimesheetLogic]

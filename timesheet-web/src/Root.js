@@ -5,7 +5,7 @@ import { Router, Route, Redirect } from 'react-router-dom'
 import * as jwt_decode from 'jwt-decode'
 
 import App from './components/app/App'
-import HourForm from './components/hour-form/HourForm'
+import HourForm from './components/work-journey-form/WorkJourneyForm'
 import Login from './components/login/Login'
 import TimesheetPage from './pages/TimesheetPage'
 import Navbar from './components/_shared/navbar/Navbar'
@@ -53,7 +53,11 @@ class Root extends React.Component {
                             props => Protected(this.isAuthorized(), App, props)
                         } />
         
-                        <Route path="/add" render={
+                        <Route exact path="/form" render={
+                            props => Protected(this.isAuthorized(), HourForm, props)
+                        } />
+
+                        <Route path="/form/:id" render={
                             props => Protected(this.isAuthorized(), HourForm, props)
                         } />
 
