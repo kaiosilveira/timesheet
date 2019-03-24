@@ -1,7 +1,7 @@
 import reducer, {
     REGISTER_WORK_JOURNEY, registerWorkJourney,
     REGISTER_WORK_JOURNEY_SUCCESS, registerWorkJourneySuccess,
-    REGISTER_WORK_JOURNEY_FAILED, registerWorkJourneyFailed, SETUP_WORK_JOURNEY_TO_EDIT,
+    REGISTER_WORK_JOURNEY_FAILED, registerWorkJourneyFailed, SETUP_WORK_JOURNEY_TO_EDIT, restoreWorkJourneyFormEdit, RESTORE_WORK_JOURNEY_FORM_EDIT, restoreWorkJourneyFormEditSuccess, RESTORE_WORK_JOURNEY_FORM_EDIT_SUCCESS,
 } from './duck'
 
 describe('work journey actions', () => {
@@ -31,6 +31,30 @@ describe('work journey actions', () => {
         })
     })
 
+    it('should create an action to restore work journey item edit state', () => {
+        const workJourneyItemId = 'fs89sdfs'
+        expect(restoreWorkJourneyFormEdit(workJourneyItemId)).toEqual({
+            type: RESTORE_WORK_JOURNEY_FORM_EDIT,
+            payload: { workJourneyItemId }
+        })
+    })
+
+    it('should create an action to notify restoration of edit state succeeded', () => {
+        const workJourney = { from: 9, to: 18, pause: 1, date: new Date() }
+        expect(restoreWorkJourneyFormEditSuccess(workJourney)).toEqual({
+            type: RESTORE_WORK_JOURNEY_FORM_EDIT_SUCCESS,
+            payload: { workJourney }
+        })
+    })
+
+    it('should create an action to notify restoration of edit state failed', () => {
+        const error = new Error('Network Error')
+        expect(registerWorkJourneyFailed(error)).toEqual({
+            type: REGISTER_WORK_JOURNEY_FAILED,
+            payload: error,
+            error: true
+        })
+    })
 })
 
 describe('work journey reducer', () => {

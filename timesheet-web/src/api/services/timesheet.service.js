@@ -35,10 +35,15 @@ class TimesheetService {
             body: JSON.stringify(workJourney),
             headers: { 'Content-Type': 'application/json' }
         })
-        .then(
-            res => res.json(),
-            err => console.log(err)
-        )
+        .then(res => res.json())
+    }
+
+    getWorkJourneyItem(id) {
+        return fetch(`${API_URL}/timesheet/${this.periodId}/workjourney/${id}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(res => res.json())
     }
 }
 

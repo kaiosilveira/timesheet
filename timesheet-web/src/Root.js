@@ -5,7 +5,7 @@ import { Router, Route, Redirect } from 'react-router-dom'
 import * as jwt_decode from 'jwt-decode'
 
 import App from './components/app/App'
-import HourForm from './components/work-journey-form/WorkJourneyForm'
+import WorkJourneyFormPage from './pages/WorkJourneyFormPage'
 import Login from './components/login/Login'
 import TimesheetPage from './pages/TimesheetPage'
 import Navbar from './components/_shared/navbar/Navbar'
@@ -50,15 +50,15 @@ class Root extends React.Component {
                         <Route path="/login" component={Login} />
         
                         <Route exact path="/" render={
-                            props => Protected(this.isAuthorized(), App, props)
+                            props => Protected(this.isAuthorized(), TimesheetPage, props)
                         } />
         
                         <Route exact path="/form" render={
-                            props => Protected(this.isAuthorized(), HourForm, props)
+                            props => Protected(this.isAuthorized(), WorkJourneyFormPage, props)
                         } />
 
                         <Route path="/form/:id" render={
-                            props => Protected(this.isAuthorized(), HourForm, props)
+                            props => Protected(this.isAuthorized(), WorkJourneyFormPage, props)
                         } />
 
                         <Route path="/timesheet" render={

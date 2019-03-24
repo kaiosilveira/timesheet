@@ -4,9 +4,9 @@ import { combineReducers } from 'redux'
 
 import API_URL from '../../api/API_URL'
 import reducer, {
-    REGISTER_WORK_JOURNEY, REGISTER_WORK_JOURNEY_SUCCESS, registerWorkJourney,
+    REGISTER_WORK_JOURNEY, REGISTER_WORK_JOURNEY_SUCCESS, registerWorkJourney, restoreWorkJourneyFormEdit, RESTORE_WORK_JOURNEY_FORM_EDIT, RESTORE_WORK_JOURNEY_FORM_EDIT_SUCCESS,
 } from './duck'
-import { registerWorkJourneyLogic } from './logic'
+import { registerWorkJourneyLogic, restoreEditStateLogic } from './logic'
 
 describe('registerWorkJourneyLogic', () => {
   
@@ -78,4 +78,36 @@ describe('registerWorkJourneyLogic', () => {
             ])
         })
     })
+})
+
+describe('restoreEditStateLogic', () => {
+  
+    it('should restore edit state of an work journey item', () => {
+        
+        const period = { _id: 'j3k2jk32', name: 'Março - 2019' }
+        const id = '42hj4hj2'
+        const workJourney = { _id: id, from: 8, to: 18, pause: 1, date: (new Date()).toString(), period: 'ds89ads' }
+
+        const store = createMockStore({
+            initialState: {
+                currentPeriod: period,
+                workJourneyItem: { }
+            },
+            reducer,
+            logic: [restoreEditStateLogic]
+        })
+
+        fetchMock.getOnce(`${API_URL}/timesheet/${period._id}/workjourney/${id}`, workJourney)
+
+        store.dispatch(restoreWorkJourneyFormEdit(id))
+
+        store.whenComplete(() => {
+            expect(store.actions).toEqual([
+                { type: RESTORE_WORK_JOURNEY_FORM_EDIT, payload: { workJourneyItemId: id }},
+                { type: RESTORE_WORK_JOURNEY_FORM_EDIT_SUCCESS, payload: { workJourney }}
+            ])
+        })
+
+    })
+
 })

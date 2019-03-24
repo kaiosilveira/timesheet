@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 
 import WORK_HOURS, { PAUSE_HOURS } from '../../constraints/WORK_HOURS'
-import { registerWorkJourney } from '../../store/work-journey/duck'
 
 import './WorkJourneyForm.css'
 
@@ -94,12 +93,4 @@ WorkJourneyForm.propTypes = {
     history: PropTypes.object.isRequired
 }
 
-const mapStateToProps = ({ workJourneyItem }) => ({ workJourneyItem })
-
-const mapDispatchToProps = dispatch => ({
-    onSubmit: workJourneyItem => {
-        return dispatch(registerWorkJourney(workJourneyItem))
-    }
-})
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(WorkJourneyForm))
+export default WorkJourneyForm
