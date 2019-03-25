@@ -54,6 +54,26 @@ class TimesheetController {
             res.status(500).json(notifyError('Internal Error'));
         }
     }
+
+    async getWorkJourney(req, res) {
+
+        const id = req.params.workJourneyId;
+
+        try {
+
+            if (!id) {
+                res.status(400).json({ error: true, msg: 'invalid identifier' });
+                return;
+            }
+    
+            const workJourney = await WorkJourney.findById(ObjectId(id));
+            res.json(workJourney);
+            
+        } catch (ex) {
+            console.log(ex);
+            res.status(500).json(notifyError('Internal Error'));
+        }
+    }
 }
 
 module.exports = TimesheetController;

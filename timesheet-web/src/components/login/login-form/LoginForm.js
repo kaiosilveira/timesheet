@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ErrorMsg from '../../_shared/error-msg/ErrorMsg'
 import './LoginForm.css'
 
 class LoginForm extends React.Component {
@@ -54,8 +53,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    loginError: PropTypes.string.isRequired
+    onSubmit: PropTypes.func.isRequired
 }
 
 export default LoginForm

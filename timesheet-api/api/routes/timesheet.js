@@ -9,6 +9,7 @@ router.route('/:periodId')
     .post(controller.registerWorkJourney);
 
 router.route('/:periodId/workjourney/:workJourneyId')
-    .put(controller.editWorkJourney);
+    .put(controller.editWorkJourney)
+    .get(controller.getWorkJourney);
 
 module.exports = router;

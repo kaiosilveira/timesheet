@@ -4,13 +4,12 @@ import Greeting from '../greetings/Greeting'
 import DateInfo from '../date-info/DateInfo'
 import Dashboard from '../dashboard/Dashboard'
 import FabLink from '../_shared/fab-link/FabLink'
-import Navbar from '../_shared/navbar/Navbar'
 import PeriodInfo from '../period-info/PeriodInfo'
 
-import './App.css'
+import './Home.css'
 
-const App = () => (
-  <div className="App">
+const Home = () => (
+  <section className="App">
     <main className="main-content">
       <DateInfo />
       <Greeting />
@@ -18,7 +17,7 @@ const App = () => (
     </main>
     <Dashboard />
     <FabLink icon="plus" path="/form" />
-  </div>
+  </section>
 )
 
-export default App
+export default Home

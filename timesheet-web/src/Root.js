@@ -4,11 +4,11 @@ import { ConnectedRouter } from 'connected-react-router'
 import { Router, Route, Redirect } from 'react-router-dom'
 import * as jwt_decode from 'jwt-decode'
 
-import App from './components/app/App'
-import WorkJourneyFormPage from './pages/WorkJourneyFormPage'
-import Login from './components/login/Login'
-import TimesheetPage from './pages/TimesheetPage'
 import Navbar from './components/_shared/navbar/Navbar'
+import Home from './components/home/Home'
+import WorkJourneyFormPage from './pages/WorkJourneyFormPage'
+import TimesheetPage from './pages/TimesheetPage'
+import LoginPage from './pages/LoginPage'
 
 import { restablishUserConnection } from './store/user/duck'
 
@@ -47,12 +47,12 @@ class Root extends React.Component {
                 <Router history={history}>
                     <div>
                         <Navbar title="Timesheet"/>
-                        <Route path="/login" component={Login} />
+                        <Route path="/login" component={LoginPage} />
         
                         <Route exact path="/" render={
-                            props => Protected(this.isAuthorized(), TimesheetPage, props)
+                            props => Protected(this.isAuthorized(), Home, props)
                         } />
-        
+
                         <Route exact path="/form" render={
                             props => Protected(this.isAuthorized(), WorkJourneyFormPage, props)
                         } />
